@@ -12,8 +12,3 @@ add_library(
 
 
 target_link_libraries(dlib_utils dlib::dlib)
-
-target_link_libraries(
-        dlib_utils
-        ${log-lib}
-)
