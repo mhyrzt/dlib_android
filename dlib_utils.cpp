@@ -1,6 +1,6 @@
 #include "dlib_utils.hpp"
 
-#define CORRECT_CH(V) ((unsigned char)V < 0 ? 0 : V > 255000 ? 255 : V / 1000)
+#define CORRECT_CH(V) ((unsigned char)(V < 0 ? 0 : V > 255000 ? 255 : V / 1000))
 
 void myu::setShapePredictor(std::string spn) {
     dlib::deserialize(spn) >> myu::sp;
