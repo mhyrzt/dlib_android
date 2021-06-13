@@ -6,6 +6,9 @@
 void myu::setShapePredictor(std::string shape_pred=DETECTOR_FILE) {
     dlib::deserialize(shape_pred) >> myu::sp;
 }
+void myu::setShapePredictor() {
+    dlib::deserialize(DETECTOR_FILE) >> myu::sp;
+}
 
 void myu::convertBytes(dlib::array2d<dlib::rgb_pixel>& out, unsigned char* yuv, int w, int h) {
     int frameSize = w * h;
