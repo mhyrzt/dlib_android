@@ -2,8 +2,8 @@
 
 #define CORRECT_CH(V) ((unsigned char)(V < 0 ? 0 : V > 255000 ? 255 : V / 1000))
 
-void myu::setShapePredictor(std::string spn) {
-    dlib::deserialize(spn) >> myu::sp;
+void myu::setShapePredictor() {
+    dlib::deserialize(DETECTOR_FILE) >> myu::sp;
 }
 
 void myu::convertBytes(dlib::array2d<dlib::rgb_pixel>& out, unsigned char* yuv, int w, int h) {
