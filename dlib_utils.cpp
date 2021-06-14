@@ -3,13 +3,6 @@
 #define CORRECT_CH(V) ((unsigned char)(V < 0 ? 0 : V > 255000 ? 255 : V / 1000))
 #define DETECTOR_FILE "shape_predictor_68_face_landmarks_GTX.dat"
 
-void myu::setShapePredictor(std::string shape_pred=DETECTOR_FILE) {
-    dlib::deserialize(shape_pred) >> myu::sp;
-}
-void myu::setShapePredictor() {
-    dlib::deserialize(DETECTOR_FILE) >> myu::sp;
-}
-
 void myu::convertBytes(dlib::array2d<dlib::rgb_pixel>& out, unsigned char* yuv, int w, int h) {
     int frameSize = w * h;
     int y, u, v, i;
@@ -36,16 +29,17 @@ void myu::convertBytes(dlib::array2d<dlib::rgb_pixel>& out, unsigned char* yuv, 
     }
 }
 
-std::vector<dlib::full_object_detection> myu::predictLandmakars(unsigned char* yuv, int w, int h){
-    /*
-        Convert Bytes to RGB image
-        Scale it up
-    */
+std::vector<dlib::full_object_detection> myu::predictLandmakars(
+    unsigned char* yuv, int w, int h,
+    dlib::frontal_face_detector detector,
+    dlib::shape_predictor sp
+    ) {
+    
     dlib::array2d<dlib::rgb_pixel> img;
     convertBytes(img, yuv, w, h);
     dlib::pyramid_up(img);
     
-    std::vector<dlib::rectangle> dets = myu::detector(img);
+    std::vector<dlib::rectangle> dets = detector(img);
     std::vector<dlib::full_object_detection> shapes;
     
     for (unsigned long j = 0; j < dets.size(); ++j) {
