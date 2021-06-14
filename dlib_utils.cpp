@@ -32,7 +32,7 @@ void myu::convertBytes(dlib::array2d<dlib::rgb_pixel>& out, unsigned char* yuv, 
 std::vector<dlib::full_object_detection> myu::predictLandmakars(
     unsigned char* yuv, int w, int h,
     dlib::frontal_face_detector detector,
-    dlib::shape_predictor sp
+    dlib::shape_predictor& sp
     ) {
     
     dlib::array2d<dlib::rgb_pixel> img;
