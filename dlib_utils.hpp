@@ -6,12 +6,4 @@
 #include "dlib/image_processing.h"
 #include <iostream>
 
-
-namespace myu {
-    std::vector<dlib::full_object_detection> predictLandmakars(
-        unsigned char*, int, int, 
-        dlib::shape_predictor&);
-}
-
-
 #endif //DLIB_UTILS

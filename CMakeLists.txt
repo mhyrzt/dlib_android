@@ -7,7 +7,6 @@ add_library(
     dlib_utils
     SHARED
     dlib_utils.hpp
-    dlib_utils.cpp
 )
 
 target_link_libraries(dlib_utils dlib::dlib)
